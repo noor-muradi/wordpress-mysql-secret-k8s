@@ -6,6 +6,22 @@ spec:
   accessModes:
     - ReadWriteOnce
   capacity:
-    storage: 2Gi
+    storage: 1Gi
   hostPath:
     path: /data/pv01/
+    
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv02
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: /data/pv02/
+
+    
