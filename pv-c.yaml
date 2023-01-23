@@ -3,10 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: wp-vc
   labels:
-    app: wp
+    app: wp-vc
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 2G
+      storage: 1G
