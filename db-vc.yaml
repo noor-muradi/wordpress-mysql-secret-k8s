@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: db-vc
   labels:
-    app: db-pvc
+    app: db-vc
 spec:
   accessModes:
     - ReadWriteOnce
