@@ -37,7 +37,24 @@ spec:
               key: MYSQL_PASSWORD
         - name: WORDPRESS_DB_NAME
           value: wp-db
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80 
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+      initContainers:
+      - name: init-container
+        image: busybox
+        command:
+          ['sh', '-c', "until nslookup mysql-svc.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mysql-svc; sleep 2; done"]          
+      volumes:
+      - name: pv02
+        persistentVolumeClaim:
+          claimName: db-vc         
       volumes:
       - name: pv01
         persistentVolumeClaim:
-          claimName: wp-vc            
+          claimName: wp-vc
+          
