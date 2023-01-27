@@ -29,8 +29,6 @@ spec:
           limits:
              cpu: "256m"
              memory: "512Mi"  
-      nodeSelector:
-        disktype: ssd
         env:
         - name: WORDPRESS_DB_HOST
           value: mysql-svc
@@ -53,6 +51,8 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
+      nodeSelector:
+        disktype: ssd    
       initContainers:
       - name: init-container
         image: busybox
@@ -66,4 +66,4 @@ spec:
       - name: pv01
         persistentVolumeClaim:
           claimName: wp-vc
-          
+         
