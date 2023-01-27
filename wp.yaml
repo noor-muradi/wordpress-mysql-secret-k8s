@@ -22,6 +22,15 @@ spec:
         volumeMounts:
           - name: pv01
             mountPath: /var/www/html
+        resources:
+          requests:
+            cpu: "128m"
+            memory: "256Mi"
+          limits:
+             cpu: "256m"
+             memory: "512Mi"  
+      nodeSelector:
+        disktype: ssd
         env:
         - name: WORDPRESS_DB_HOST
           value: mysql-svc
